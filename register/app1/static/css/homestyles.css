@@ -1,0 +1,28 @@
+/* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    background: url("{% static 'images/gradient-background.jpg' %}") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.tile {
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.entertainment-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.entertainment-list li {
+    margin: 10px 0;
+}
+
+.logo {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    margin-right: 10px;
+}

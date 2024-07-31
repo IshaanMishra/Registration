@@ -26,7 +26,6 @@ def LoginPage(request):
         if user is not None:
             # If user is valid, log them in
             auth_login(request, user)
-            messages.success(request, 'You have logged in successfully.')
             return redirect('home')  # Replace 'home' with your desired URL
         else:
             messages.error(request, 'Invalid username or password.')
@@ -69,10 +68,16 @@ def SignupPage(request):
                 return redirect('login')  # Redirect to login page after successful signup
                 
         else:
-            messages.error(request, 'Passwords do not match')
- 
-        
-        
-        
+            messages.error(request, 'Passwords do not match')  
     
     return render (request,'signup.html')
+
+
+def latest(request):
+    return render(request, 'latest.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def logout(request):
+    return render(request, 'home.html')

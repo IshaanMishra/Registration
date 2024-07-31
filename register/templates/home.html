@@ -1,59 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Links</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h1 {
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin: 10px 0;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>{% block title %}Home{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <div class="container">
-        <h1>News Links</h1>
-        <ul>
-            <li><a href="https://news.google.com" target="_blank">Google News</a></li>
-            <li><a href="https://news.yahoo.com" target="_blank">Yahoo News</a></li>
-            <li><a href="https://thewire.in" target="_blank">The Wire</a></li>
-            <li><a href="https://www.nytimes.com" target="_blank">New York Times</a></li>
-            <li><a href="https://www.washingtontimes.com" target="_blank">Washington Times</a></li>
-            <li><a href="https://www.reuters.com" target="_blank">Reuters</a></li>
+    {% block content %}
+    <div class="tile">
+        <h2>Social Media Links</h2>
+        <ul class="entertainment-list">
+            <li>
+                <a href="https://www.youtube.com/@IonicaneYT" target="_blank">
+                    <img src="{% static 'images/youtube-logo.png' %}" alt="Youtube Logo" class="logo">
+                    Youtube
+                </a>
+            </li>
+            <li>
+                <a href="https://www.discord.com" target="_blank">
+                    <img src="{% static 'images/discord-logo.png' %}" alt="Discord Logo" class="logo">
+                    Discord
+                </a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com" target="_blank">
+                    <img src="{% static 'images/instagram-logo.png' %}" alt="Instagram Logo" class="logo">
+                    Instagram
+                </a>
+            </li>
+            <li>
+                <a href="https://reddit.com/" target="_blank">
+                    <img src="{% static 'images/reddit-logo.png' %}" alt="Reddit Logo" class="logo">
+                    Reddit
+                </a>
+            </li>
+            <!-- Add other list items here -->
         </ul>
     </div>
+    {% endblock %}
 </body>
 </html>

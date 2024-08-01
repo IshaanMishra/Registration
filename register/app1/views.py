@@ -1,9 +1,12 @@
 from django.shortcuts import render
 import mysql.connector as sql
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.views.decorators.cache import cache_control
+#from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -11,12 +14,16 @@ uname=''
 emailid=''
 pwd=''
 cpwd=''
+flag='Y'
 
+#@login_required
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def HomePage(request):
     return render (request,'home.html')
 
 def LoginPage(request):
-    
+    logout(request)
+   
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -79,5 +86,8 @@ def latest(request):
 def about(request):
     return render(request, 'about.html')
 
-def logout(request):
-    return render(request, 'home.html')
+def logoutpage(request):
+    logout(request)
+    messages.info(request, 'Logged Out Successfully!')
+    return render(request, 'logout.html')
+

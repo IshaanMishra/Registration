@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
+
     {% block content %}
     <div class="tile">
         <h2>Social Media Links</h2>
+        {% if request.user.is_authenticated %}
         <ul class="entertainment-list">
             <li>
                 <a href="https://www.youtube.com/@IonicaneYT" target="_blank">
@@ -37,9 +39,13 @@
                     Reddit
                 </a>
             </li>
-            <!-- Add other list items here -->
+            {% else %}
+            </p>Need to <a href='/login'>Login</a>.</p>
+            {% endif %}
         </ul>
     </div>
+    
     {% endblock %}
+    
 </body>
 </html>

@@ -1,51 +1,67 @@
-{% extends "base.html" %}
+<!-- templates/home.html -->
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Home{% endblock %}</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-
-    {% block content %}
-    <div class="tile">
-        <h2>Social Media Links</h2>
-        {% if request.user.is_authenticated %}
-        <ul class="entertainment-list">
-            <li>
-                <a href="https://www.youtube.com/@IonicaneYT" target="_blank">
-                    <img src="{% static 'images/youtube-logo.png' %}" alt="Youtube Logo" class="logo">
-                    Youtube
-                </a>
-            </li>
-            <li>
-                <a href="https://www.discord.com" target="_blank">
-                    <img src="{% static 'images/discord-logo.png' %}" alt="Discord Logo" class="logo">
-                    Discord
-                </a>
-            </li>
-            <li>
-                <a href="https://www.instagram.com" target="_blank">
-                    <img src="{% static 'images/instagram-logo.png' %}" alt="Instagram Logo" class="logo">
-                    Instagram
-                </a>
-            </li>
-            <li>
-                <a href="https://reddit.com/" target="_blank">
-                    <img src="{% static 'images/reddit-logo.png' %}" alt="Reddit Logo" class="logo">
-                    Reddit
-                </a>
-            </li>
-            {% else %}
-            </p>Need to <a href='/login'>Login</a>.</p>
-            {% endif %}
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'latest' %}">Ionicane Latest</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">About Ionicane</a>
+                </li>
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    {% else %}
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
     </div>
-    
-    {% endblock %}
-    
+    <header>
+        <h1>Welcome to Our Entertainment Hub</h1>
+        <p>Your one-stop destination for the latest movies, TV shows, and more!</p>
+    </header>
+
+    <section class="tiles-section">
+        <h2>Featured Entertainment</h2>
+        <div class="tiles-container">
+            {% for tile in tiles %}
+            <div class="tile">
+                <img src="{% static tile.image_url %}" alt="{{ tile.title }}">
+                <p>{{ tile.title }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Entertainment Hub. All rights reserved.</p>
+    </footer>
 </body>
 </html>

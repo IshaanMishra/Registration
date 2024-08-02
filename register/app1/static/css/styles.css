@@ -1,42 +1,52 @@
-/* styles.css */
+/* static/css/styles.css */
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: url("/static/images/gradient.jpg") no-repeat center center fixed;
-    background-size: cover;
-    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+}
+
+header {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.tiles-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    padding: 20px;
+    box-sizing: border-box;
+    flex: 1; /* Allow this section to grow and push footer down */
+}
+
+.tiles-container {
+    display: flex;
+    justify-content: center; /* Center tiles horizontally */
+    align-items: center; /* Center tiles vertically if container has height */
+    gap: 20px;
 }
 
 .tile {
-    background: rgba(27, 125, 132, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
-    margin: 50px auto;
+    display: inline-block;
+    width: 100px; /* Reduced size by 50% */
     text-align: center;
+    border: 1px solid #ccc; /* Optional: Added border for debugging */
+    padding: 5px; /* Optional: Add some padding */
 }
 
-.entertainment-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.entertainment-list li {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
-}
-
-.entertainment-list li a {
-    text-decoration: none;
-    color: #333;
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    width: 50px; /* Adjust size as needed */
+.tile img {
+    width: 100%;
     height: auto;
-    margin-right: 10px;
+}
+
+footer {
+    background-color: #f1f1f1; /* Light background color for footer */
+    text-align: center;
+    padding: 10px 0; /* Add vertical padding */
+    margin-top: auto; /* Push the footer to the bottom */
+    width: 100%;
 }

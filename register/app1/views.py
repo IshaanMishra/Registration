@@ -19,7 +19,14 @@ flag='Y'
 #@login_required
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def HomePage(request):
-    return render (request,'home.html')
+    tiles = [
+        {"title": "Movie 1", "image_url": r"images\discord-logo.png"},
+        {"title": "Movie 2", "image_url": r"images\instagram-logo.png"},
+        {"title": "Movie 3", "image_url": r"images\reddit-logo.png"},
+        {"title": "Movie 4", "image_url": r"images\youtube-logo.png"},
+        # Add more tiles as needed
+    ]
+    return render(request, 'home.html', {'tiles': tiles})
 
 def LoginPage(request):
     logout(request)

@@ -20,13 +20,18 @@ flag='Y'
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def HomePage(request):
     tiles = [
-        {"title": "Movie 1", "image_url": r"images\discord-logo.png"},
-        {"title": "Movie 2", "image_url": r"images\instagram-logo.png"},
-        {"title": "Movie 3", "image_url": r"images\reddit-logo.png"},
-        {"title": "Movie 4", "image_url": r"images\youtube-logo.png"},
+        {"title": "Movie 1", "image_url": r"images\discord-logo.png",'url': 'https://youtube.com'},
+        {"title": "Movie 2", "image_url": r"images\instagram-logo.png",'url': 'https://google.com'},
+        {"title": "Movie 3", "image_url": r"images\reddit-logo.png",'url': 'https://youtube.com'},
+        {"title": "Movie 4", "image_url": r"images\youtube-logo.png",'url': 'https://youtube.com'},
         # Add more tiles as needed
     ]
-    return render(request, 'home.html', {'tiles': tiles})
+    
+    context = {
+        'tiles': tiles,
+    }
+    
+    return render(request, 'home.html', context)
 
 def LoginPage(request):
     logout(request)
